@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
   const skey: string = process.env.SECRETKEY!;
   const cookie = request.cookies.get("accessToken");
   const key = new TextEncoder().encode(skey);
-
+  console.log("Cookie?", cookie)
   if (!cookie) {
     return NextResponse.json({
       status: 400,
