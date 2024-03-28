@@ -25,6 +25,7 @@ export default async function EventType({
   }
 
   const { data } = await getEventByCategory(params.eventType);
+  //console.log("await the function TEST",data)
   if (!data) {
     return <>No events for {params.eventType}</>;
   }

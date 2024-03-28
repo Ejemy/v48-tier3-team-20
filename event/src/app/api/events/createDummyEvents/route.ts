@@ -10,6 +10,9 @@ import { createMongoEvent } from "@/lib/dummyBackend";
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const n = Number(searchParams.get("n"));
+  
+  console.log("REQUEST",request)
+  console.log("SEARCH PARAMS",searchParams)
 
   if (isNaN(n) || n < 1 || n > 100) {
     return NextResponse.json({

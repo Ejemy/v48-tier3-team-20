@@ -1,7 +1,7 @@
 import { CATEGORIES } from "@/lib/constants";
 import EventCard from "@/components/EventCard";
 import EventList from "@/components/EventList";
-import { getEventByCategory } from "@/lib/dummyBackend";
+//import res from "@/app/api/events/getEventsByCategory/route";
 import { EventType } from "@/lib/types";
 
 type CategoryData = {
@@ -10,12 +10,19 @@ type CategoryData = {
   event: EventType[];
 }[];
 
-export default async function Events() {
-  const categoryData: CategoryData = [];
+const getEvents = async () => {
 
+}
+
+
+export default async function Events() {
+
+
+  const categoryData: CategoryData = [];
+  /*
   for (let cat of CATEGORIES) {
     const { data } = await getEventByCategory(cat);
-
+    console.log("LOOP data", cat)
     if (!data) {
       continue;
     }
@@ -26,8 +33,14 @@ export default async function Events() {
       event: data.slice(0, 3),
     });
   }
-
   console.log("catdata", categoryData);
+  */
+  const response = await fetch('http:localhost:3000/api/events/getEventsByCategory', { method: 'GET' });
+  if (response.ok) {
+    const data = await response.json()
+    console.log("fetch req data", data)
+  }
+
   return (
     <>
       <div className="flex flex-col gap-2 bg-lime-200">
@@ -62,3 +75,5 @@ export default async function Events() {
     </>
   );
 }
+
+
