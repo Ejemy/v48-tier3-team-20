@@ -7,7 +7,6 @@ export async function GET(req:Request, {
   }: {
     params: { username: string };
   }){
-    console.log(params)
     try{
         await dbConnect();
         const publicData = await Users.findOne({username: params.username}).select("interest username email profile_pic bio")
